@@ -1,0 +1,95 @@
+:root {
+    --bg: #ffffff;
+    --accent: #000000;
+    --primary: #FF3E00;
+    --border-width: 4px;
+}
+
+body {
+    background-color: var(--bg);
+    color: var(--accent);
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    padding: 20px; 
+}
+
+.container {
+    width: 100%;
+    max-width: 700px; 
+    border: var(--border-width) solid var(--accent);
+    padding: clamp(10px, 2vw, 60px); 
+    box-shadow: 15px 15px 0px var(--accent);
+    background: white;
+    box-sizing: border-box;
+}
+
+h1 {
+    font-size: clamp(2.5rem, 5vw, 5rem); 
+    font-weight: 900;
+    text-transform: uppercase;
+    line-height: 0.9;
+    margin-bottom: 30px;
+    letter-spacing: -2px;
+}
+
+button {
+    background: var(--primary);
+    color: white;
+    border: var(--border-width) solid var(--accent);
+    
+    padding: 15px 30px;
+    font-size: 1.2rem; 
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    
+    cursor: pointer;
+    box-shadow: 6px 6px 0px var(--accent);
+    transition: all 0.1s ease;
+    
+    /* Layout */
+    margin-top: 20px;
+    width: fit-content; 
+
+}
+
+button:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 8px 8px 0px var(--accent);
+    background: var(--accent); /* Switches to black on hover */
+}
+
+button:active {
+    transform: translate(6px, 6px);
+    box-shadow: 0px 0px 0px var(--accent);
+}
+
+button:disabled {
+    background: #e0e0e0;
+    color: #999;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+textarea {
+    width: 100%;
+    height: clamp(200px, 30vh, 300px); 
+    border: var(--border-width) solid var(--accent);
+    padding: 15px;
+    font-family: 'Fira Code', monospace;
+    font-size: 1rem;
+    box-sizing: border-box;
+}
+
+@media (max-width: 1024px) {
+    .container {
+        padding: 30px;
+        box-shadow: 10px 10px 0px var(--accent);
+    }
+    h1 {
+        letter-spacing: -1px;
+    }
+}

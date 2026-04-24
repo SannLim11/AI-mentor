@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CODE REVIEW // GEMINI</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Review<br>Your<br>Code.</h1>
+        
+        <div class="input-section">
+            <textarea id="code-input" placeholder="// PASTE CODE HERE"></textarea>
+    
+            <div style="display: flex; justify-content: flex-start;">
+                <button id="submit-btn" onclick="submitCode()">Analyze Now</button>
+            </div>
+        </div>
+
+        <div id="feedback" class="feedback" style="display:none;"></div>
+    </div>
+
+    <script>
+        function submitCode() {
+            const feedbackBox = document.getElementById('feedback');
+            const btn = document.getElementById('submit-btn');
+            const code = document.getElementById('code-input').value;
+            
+            if(!code.trim()) return;
+
+            btn.innerText = "THINKING...";
+            feedbackBox.style.display = "block";
+            feedbackBox.innerHTML = "<h2>Gemini is hunting bugs...</h2>";
+
+            fetch('/review', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ code }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                btn.innerText = "Analyze Now";
+                if(data.feedback) {
+                    feedbackBox.innerHTML = marked.parse(data.feedback);
+                } else {
+                    feedbackBox.innerHTML = "<h3>Error: " + data.error + "</h3>";
+                }
+            })
+            .catch(() => {
+                btn.innerText = "Analyze Now";
+                feedbackBox.innerHTML = "<h3>Connection Failed.</h3>";
+            });
+        }
+    </script>
+</body>
+</html>
