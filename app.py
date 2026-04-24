@@ -4,7 +4,7 @@ from flask import Flask, request, jsonify
 
 app = Flask(__name__)
 
-client = genai.Client()
+client = genai.Client(api_key="GEMINI_API_KEY")
 
 @app.route("/review", methods=["POST"])
 def review_code():
