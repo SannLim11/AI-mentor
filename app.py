@@ -16,7 +16,7 @@ def review_code():
 
     try:
         response = client.models.generate_content(
-            model="gemini-3.1-pro-preview",
+            model="gemini-3.1-flash-preview",
             contents=f"You are an expert Senior Software Engineer. Provide a concise code review for the following snippet. Focus on bugs, security, and performance:\n\n{user_code}"
         )
 
