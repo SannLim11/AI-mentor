@@ -1,4 +1,10 @@
 ﻿# AI-mentor
+
+Setup
+python --version
+pip install flask google-genai
+pip install python-dotenv
+
 Create .env file:
 GEMINI_API_KEY=your_actual_api_key_here
 
